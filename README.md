@@ -1,2 +1,2 @@
 # Playlist
-playlist por filipadass
+playlist por filipadass utilizando localStorage e EventListener
