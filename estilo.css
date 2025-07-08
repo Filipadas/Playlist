@@ -1,3 +1,4 @@
+/* Tema claro: define cores de fundo e texto para o modo claro */
 body.light-theme {
     background-color: #f4f4f4;
     color: #222;
@@ -17,6 +18,41 @@ body.light-theme button:hover {
     background-color: #1976D2;
 }
 
+/* Tema daltônico: alto contraste e cores diferenciadas para acessibilidade */
+body.daltonic-theme,
+body.light-theme.daltonic-theme {
+    /* Cores de fundo e texto com alto contraste */
+    background-color: #222 !important;
+    color: #ffe600 !important;
+}
+body.daltonic-theme .container,
+body.light-theme.daltonic-theme .container {
+    background-color: #333 !important;
+    box-shadow: 0 0 10px #ffe600 !important;
+}
+body.daltonic-theme li,
+body.light-theme.daltonic-theme li {
+    background-color: #444 !important;
+    color: #ffe600 !important;
+}
+body.daltonic-theme button,
+body.light-theme.daltonic-theme button {
+    background-color: #ff5722 !important;
+    color: #fff !important;
+    border: 2px solid #ffe600 !important;
+}
+body.daltonic-theme .remove,
+body.light-theme.daltonic-theme .remove {
+    color: #00e676 !important;
+}
+body.daltonic-theme input[type="text"],
+body.light-theme.daltonic-theme input[type="text"] {
+    background-color: #fffde7 !important;
+    color: #222 !important;
+    border: 2px solid #ff5722 !important;
+}
+
+/* Tema escuro padrão */
 body {
     font-family: Arial, sans-serif;
     background-color: #1e1e2f;
@@ -25,6 +61,7 @@ body {
     padding: 0;
 }
 
+/* Container principal centralizado */
 .container {
     max-width: 600px;
     margin: 40px auto;
@@ -34,35 +71,39 @@ body {
     box-shadow: 0 0 10px #000;
 }
 
+/* Título centralizado */
 h1 {
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Seção dos inputs e botão de adicionar */
 .input-section {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap; /* opcional: permite quebrar linha em telas pequenas */
+    flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
 }
 
 .input-section input#musicInput {
-    flex: 2;
+    flex: 2; /* ocupa mais espaço */
 }
 
 .input-section input#imageInput {
-    flex: 1;
+    flex: 1; /* ocupa menos espaço */
 }
 
 .input-section button {
-    flex-shrink: 0;
+    flex-shrink: 0; /* botão não diminui de tamanho */
 }
 
+/* Estilo dos campos de texto */
 input[type="text"] {
     padding: 10px;
     border: none;
     border-radius: 5px;
 }
 
+/* Estilo do botão principal */
 button {
     padding: 10px;
     border: none;
@@ -76,12 +117,14 @@ button:hover {
     background-color: #45a049;
 }
 
+/* Lista de músicas sem marcadores e espaçamento */
 ul {
     list-style: none;
     padding: 0;
     margin-top: 20px;
 }
 
+/* Cada item da lista de músicas */
 li {
     background-color: #3d3d50;
     margin-bottom: 15px;
@@ -93,6 +136,7 @@ li {
     gap: 15px;
 }
 
+/* Imagem da música na lista */
 li img {
     width: 60px;
     height: 60px;
@@ -100,6 +144,7 @@ li img {
     border-radius: 5px;
 }
 
+/* Botões de remover e editar dentro do item da lista */
 li .remove {
     position: absolute;
     right: 10px;
@@ -116,7 +161,7 @@ li .remove {
     z-index: 1000;
 }
 
-/* Estilo do switch (chave) */
+/* Estilo do switch (chave) de tema */
 .switch {
     position: relative;
     display: inline-block;

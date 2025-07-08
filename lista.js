@@ -29,7 +29,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Seleciona o switch de tema
     const themeToggle = document.getElementById('theme-toggle');
+    // Seleciona o botão de acessibilidade daltônica
+    const daltonicToggle = document.getElementById('daltonic-toggle');
 
+    // Função para aplicar ou remover o modo daltônico
+    function aplicarDaltonic(ativo) {
+        if (ativo) {
+            document.body.classList.add('daltonic-theme'); // Adiciona a classe do modo daltônico
+        } else {
+            document.body.classList.remove('daltonic-theme'); // Remove a classe do modo daltônico
+        }
+    }
+
+    // Ao carregar a página, verifica se o modo daltônico está ativado
+    const daltonicAtivo = localStorage.getItem('daltonic') === 'true'; // Verifica se está ativado
+    aplicarDaltonic(daltonicAtivo); // Aplica o modo salvo
+
+    // Atualiza o texto do botão conforme o estado
+    daltonicToggle.textContent = daltonicAtivo ? 'Acessibilidade Daltônica: ON' : 'Acessibilidade Daltônica';
+
+    // Evento de clique no botão de acessibilidade daltônica
+    daltonicToggle.addEventListener('click', () => {
+        const novoEstado = !document.body.classList.contains('daltonic-theme'); // Inverte o estado
+        aplicarDaltonic(novoEstado); // Aplica o novo estado
+        localStorage.setItem('daltonic', novoEstado); // Salva no localStorage
+        daltonicToggle.textContent = novoEstado ? 'Acessibilidade Daltônica: ON' : 'Acessibilidade Daltônica'; // Atualiza o texto do botão
+    });
     // Função para aplicar o tema (claro ou escuro)
     function aplicarTema(tema) {
         if (tema === 'escuro') {
