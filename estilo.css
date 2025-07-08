@@ -1,3 +1,22 @@
+body.light-theme {
+    background-color: #f4f4f4;
+    color: #222;
+}
+body.light-theme .container {
+    background-color: #fff;
+    box-shadow: 0 0 10px #bbb;
+}
+body.light-theme li {
+    background-color: #f0f0f0;
+}
+body.light-theme button {
+    background-color: #2196F3;
+    color: #fff;
+}
+body.light-theme button:hover {
+    background-color: #1976D2;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #1e1e2f;
@@ -87,4 +106,56 @@ li .remove {
     top: 10px;
     color: red;
     cursor: pointer;
+}
+
+/* Estilo para o container do switch no canto superior direito */
+#theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Estilo do switch (chave) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
 }

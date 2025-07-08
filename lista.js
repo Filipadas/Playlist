@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função que incrementa o contador, salva no localStorage e atualiza na tela
     function atualizarContador() {
-        cliques++;
-        localStorage.setItem('contador', cliques);
-        contador.textContent = `clicou em adicionar: ${cliques} vezes`;
+        cliques++; // Incrementa o valor do contador
+        localStorage.setItem('contador', cliques); // Salva o novo valor no localStorage
+        contador.textContent = `clicou em adicionar: ${cliques} vezes`; // Atualiza o texto na tela
     }
 
     // Seleciona o campo de input do link da imagem
@@ -26,6 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicList = document.getElementById('musicList');
     // Variável para controlar se está editando uma música existente
     let editIndex = null;
+
+    // Seleciona o switch de tema
+    const themeToggle = document.getElementById('theme-toggle');
+
+    // Função para aplicar o tema (claro ou escuro)
+    function aplicarTema(tema) {
+        if (tema === 'escuro') {
+            document.body.classList.remove('light-theme'); // Remove a classe de tema claro
+        } else {
+            document.body.classList.add('light-theme'); // Adiciona a classe de tema claro
+        }
+    }
+
+    // Ao carregar a página, verifica o tema salvo no localStorage
+    const temaSalvo = localStorage.getItem('tema') || 'escuro'; // Pega o tema salvo ou usa escuro
+    aplicarTema(temaSalvo); // Aplica o tema salvo
+    themeToggle.checked = temaSalvo === 'escuro' ? true : false; // Marca o switch conforme o tema
+
+    // Evento de mudança do switch
+    themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+            aplicarTema('escuro'); // Se marcado, aplica tema escuro
+            localStorage.setItem('tema', 'escuro'); // Salva escolha
+        } else {
+            aplicarTema('claro'); // Se desmarcado, aplica tema claro
+            localStorage.setItem('tema', 'claro'); // Salva escolha
+        }
+    });
 
     // Função que carrega as músicas salvas no localStorage e exibe na tela
     const loadMusics = () => {
@@ -41,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Função que salva o array de músicas no localStorage
     const saveMusics = (musics) => {
-        localStorage.setItem('musics', JSON.stringify(musics));
+        localStorage.setItem('musics', JSON.stringify(musics)); // Salva o array de músicas
     };
 
     // Função que adiciona uma música na lista do DOM
@@ -52,40 +80,40 @@ document.addEventListener('DOMContentLoaded', () => {
         // Se houver imagem, cria e adiciona o elemento <img>
         if (item.image && item.image.trim() !== '') {
             const img = document.createElement('img');
-            img.src = item.image;
-            img.alt = 'Imagem da música';
-            li.appendChild(img);
+            img.src = item.image; // Define o link da imagem
+            img.alt = 'Imagem da música'; // Texto alternativo
+            li.appendChild(img); // Adiciona a imagem ao <li>
         }
     
         // Adiciona o nome da música como texto
         const text = document.createTextNode(item.name);
-        li.appendChild(text);
+        li.appendChild(text); // Adiciona o texto ao <li>
     
         // Cria o botão de editar (ícone ✎)
         const editBtn = document.createElement('span');
-        editBtn.textContent = '✎';
+        editBtn.textContent = '✎'; // Ícone de edição
         editBtn.classList.add('remove'); // Usa o estilo existente
         editBtn.style.color = 'orange';  // Cor diferente para editar
         editBtn.style.right = '35px';    // Reposiciona à esquerda do remover
         // Ao clicar em editar, preenche os campos e prepara para edição
         editBtn.addEventListener('click', () => {
-            musicInput.value = item.name;
-            imageInput.value = item.image;
-            editIndex = index;
-            addBtn.textContent = 'Salvar Edição';
+            musicInput.value = item.name; // Preenche o input com o nome
+            imageInput.value = item.image; // Preenche o input com a imagem
+            editIndex = index; // Marca o índice para edição
+            addBtn.textContent = 'Salvar Edição'; // Muda o texto do botão
         });
-        li.appendChild(editBtn);
+        li.appendChild(editBtn); // Adiciona o botão de editar ao <li>
     
         // Cria o botão de remover (ícone ✖)
         const removeBtn = document.createElement('span');
-        removeBtn.textContent = '✖';
+        removeBtn.textContent = '✖'; // Ícone de remover
         removeBtn.classList.add('remove');
         // Ao clicar em remover, exclui a música da lista
         removeBtn.addEventListener('click', () => {
-            removeMusic(index);
+            removeMusic(index); // Chama a função para remover
         });
     
-        li.appendChild(removeBtn);
+        li.appendChild(removeBtn); // Adiciona o botão de remover ao <li>
         // Adiciona o <li> na lista de músicas
         musicList.appendChild(li);
     };
@@ -93,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para adicionar ou editar uma música
     const addMusic = () => {
         // Pega o valor do nome e da imagem
-        const name = musicInput.value.trim();
-        const image = imageInput.value.trim();
+        const name = musicInput.value.trim(); // Remove espaços do nome
+        const image = imageInput.value.trim(); // Remove espaços da imagem
     
         // Não faz nada se o nome estiver vazio
         if (name === '') return;
@@ -104,17 +132,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Se estiver editando, atualiza a música
         if (editIndex !== null) {
-            musics[editIndex] = { name, image };
-            editIndex = null;
-            addBtn.textContent = 'Adicionar';
+            musics[editIndex] = { name, image }; // Atualiza a música
+            editIndex = null; // Sai do modo edição
+            addBtn.textContent = 'Adicionar'; // Volta o texto do botão
         } else {
             // Se não, adiciona uma nova música
-            musics.push({ name, image });
+            musics.push({ name, image }); // Adiciona ao array
         }
     
         // Salva e recarrega a lista
-        saveMusics(musics);
-        loadMusics();
+        saveMusics(musics); // Salva no localStorage
+        loadMusics(); // Atualiza a lista na tela
     
         // Limpa os campos de input
         musicInput.value = '';
@@ -127,21 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Recupera as músicas
         const musics = JSON.parse(localStorage.getItem('musics')) || [];
         // Remove a música do array
-        musics.splice(index, 1);
+        musics.splice(index, 1); // Remove pelo índice
         // Salva e recarrega a lista
-        saveMusics(musics);
-        loadMusics();
+        saveMusics(musics); // Salva no localStorage
+        loadMusics(); // Atualiza a lista na tela
     };
 
     // Ao clicar no botão de adicionar, executa addMusic e incrementa o contador
     addBtn.addEventListener('click', () => {
-        addMusic();
-        atualizarContador();
+        addMusic(); // Adiciona a música
+        atualizarContador(); // Incrementa o contador
     });
     // Ao pressionar Enter no campo de música, executa addMusic
     musicInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') addMusic();
+        if (e.key === 'Enter') addMusic(); // Se apertar Enter, adiciona música
     });
     // Carrega as músicas ao iniciar a página
-    loadMusics();
+    loadMusics(); // Exibe as músicas salvas ao abrir a página
 });
