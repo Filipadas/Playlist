@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cliques++; // Incrementa o valor do contador
         localStorage.setItem('contador', cliques); // Salva o novo valor no localStorage
         contador.textContent = `clicou em adicionar: ${cliques} vezes`; // Atualiza o texto na tela
+        
     }
 
     // Seleciona o campo de input do link da imagem
@@ -29,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Seleciona o switch de tema
     const themeToggle = document.getElementById('theme-toggle');
+
     // Seleciona o botão de acessibilidade daltônica
     const daltonicToggle = document.getElementById('daltonic-toggle');
-
     // Função para aplicar ou remover o modo daltônico
     function aplicarDaltonic(ativo) {
         if (ativo) {
@@ -53,8 +54,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const novoEstado = !document.body.classList.contains('daltonic-theme'); // Inverte o estado
         aplicarDaltonic(novoEstado); // Aplica o novo estado
         localStorage.setItem('daltonic', novoEstado); // Salva no localStorage
-        daltonicToggle.textContent = novoEstado ? 'Acessibilidade Daltônica: ON' : 'Acessibilidade Daltônica'; // Atualiza o texto do botão
+        daltonicToggle.textContent = novoEstado ? 'Acessibilidade Daltônica: ON' : 'Acessibilidade Daltônica : OFF'; // Atualiza o texto do botão
     });
+
+
+    //MODO ROSA Ainda n está pronto
+    const pinkmodeToggle = document.getElementById('pinkmode-toggle');{
+    //aplicar ou remover
+    function aplicarPink(ativo) {
+        if (ativo) {
+            document.body.classList.add('pinkmode-theme');
+        } else {
+            document.body.classList.remove('pinkmode-theme');
+        }
+    }
+
+    const pinkmodeToggle = localStorage.getItem('pinkmode') === 'true';
+    aplicarPink(pinkmodeAtivo);
+
+    pinkmodeToggle.textContent = pinkmodeAtivo ? 'Modo Rosa : ON' : 'Modo Rosa: OFF'
+
+    pinkmodeToggle.addEventListener('click', ()=>{
+        const novoEstado = !document.body.classList.contains('pinkmode-theme');
+        aplicarPink(novoEstado);
+        localStorage.setItem('pinkmode', novoEstado); 
+        pinkmodeToggle.textContent = novoEstado ? 'Modo Rosa: ON' : 'Modo Rosa: OFF';
+        });
+    }
+    //Fim do Modo Rosa
+
     // Função para aplicar o tema (claro ou escuro)
     function aplicarTema(tema) {
         if (tema === 'escuro') {

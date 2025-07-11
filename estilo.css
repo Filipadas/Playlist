@@ -52,6 +52,39 @@ body.light-theme.daltonic-theme input[type="text"] {
     border: 2px solid #ff5722 !important;
 }
 
+body.pinkmode-theme,
+body.light-theme.pinkmode-theme {
+    /* Cores de fundo e texto com alto contraste */
+    background-color: #ff69eb !important;
+    color: #ffffff !important;
+}
+body.pinkmode-theme .container,
+body.light-theme.pinkmode-theme .container {
+    background-color: #fd39d3 !important;
+    box-shadow: 0 0 10px #a200ff !important;
+}
+body.pinkmode-theme li,
+body.light-theme.pinkmode-theme li {
+    background-color: #e76cff !important;
+    color: #ffffff !important;
+}
+body.pinkmode-theme button,
+body.light-theme.pinkmode-theme button {
+    background-color: #b700ff !important;
+    color: #fff !important;
+    border: 2px solid #f700ff !important;
+}
+body.pinkmode-theme .remove,
+body.light-theme.pinkmode-theme .remove {
+    color: #00e676 !important;
+}
+body.pinkmode-theme input[type="text"],
+body.light-theme.pinkmode-theme input[type="text"] {
+    background-color: #fffde7 !important;
+    color: #222 !important;
+    border: 2px solid #ff5722 !important;
+}
+
 /* Tema escuro padrão */
 body {
     font-family: Arial, sans-serif;
